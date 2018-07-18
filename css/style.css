@@ -51,11 +51,12 @@ img {
     width: 100%;
     /* height: 403px; */
     background: #fff;
+	position: relative;
 }
 .main-wrap .section2-wrap .iphone-wrap{
     position: relative;
     width: 199px;
-    margin: 0 auto;
+    margin: 0 auto -118px;
     top: -158px;
 }
 .main-wrap .section2-wrap .iphone-wrap img{
@@ -76,20 +77,21 @@ img {
 .main-wrap .section2-wrap .title-wrap{
     position: relative;
     width: 280px;
-    margin: 0 auto;
-    top: -114px;
+    margin: 0 auto 36px;
+/*    top: -114px;*/
 }
 .main-wrap .section2-wrap .contents-wrap{
     position: relative;
     width: 328px;
     margin: 0 auto;
-    top: -78px;
+/*    top: -78px;*/
 }
 .main-wrap .section2-wrap .contents2-wrap{
     position: relative;
     width: 298px;
     margin: 0 auto;
-    top: -33px;
+	padding-bottom: 32px;
+/*    top: -33px;*/
 }
 .main-wrap .section2-wrap .more-minivertisng-btn{
     background: url(../images/more_minivertising_btn.png) 0 0 no-repeat;
@@ -99,15 +101,16 @@ img {
     margin: 0 auto;
     display: block;
     position: relative;
-    top: -71px;
+/*    top: -71px;*/
 }
 .main-wrap .section2-wrap .arrow-wrap{
     position: absolute;
     width: 171px;
     margin: 0 auto;
     left: 50%;
+	bottom: -19px;
     margin-left: -86px;
-    margin-top: -20px;
+/*    margin-top: -20px;*/
 }
 .main-wrap .section3-wrap {
     width: 100%;
