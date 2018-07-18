@@ -7,6 +7,25 @@ img {
 .main-wrap {
     width: 100%;
 }
+.main-wrap .move-top {
+    position: fixed;
+    width: 35px;
+}
+.main-wrap .move-request {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #6f4a82;
+    z-index: 2;
+}
+.main-wrap .move-request button {
+    background: url(../images/move_req_text.png) 50% 50% no-repeat;
+    background-size: 165px 16px;
+    width: 100%;
+    height: 76px;
+
+}
 .main-wrap .head-wrap {
     height: 76px;
     background: #fff;
@@ -92,7 +111,7 @@ img {
 }
 .main-wrap .section3-wrap {
     width: 100%;
-    height: 403px;
+    /* height: 403px; */
     background: #d2d2d2;
 }
 .main-wrap .section3-wrap .info-wrap {
@@ -111,7 +130,7 @@ img {
     font-weight: 300;
     font-size: 10px;
     color: #646464;
-    letter-spacing: 0px;
+    letter-spacing: -1px;
 }
 .main-wrap .section3-wrap .info-wrap .input-wrap{
     margin-bottom: 18px;
@@ -120,29 +139,76 @@ img {
     width: 100%;
     font-size: 0;
 }
-.main-wrap .section3-wrap .info-wrap .input-wrap .insta-area span{
-    font-family: 'Noto Sans Korean';
-    font-weight: 500;
-    font-size: 15px;
-    /* letter-spacing: 3px; */
+.main-wrap .section3-wrap .info-wrap .input-wrap .insta-area div{
     height: 46px;
     width: 55%;
     background: #f6f6f6;
-    color: #929292;
-    display: inline-block;
     vertical-align: top;
-    line-height: 46px;
-    text-align: center;
+    /* text-align: center; */
+    display: inline-block;
+}
+.main-wrap .section3-wrap .info-wrap .input-wrap .insta-area div img {
+    width: 133px;
+    margin: 9% 0 0 7%;
 }
 .main-wrap .section3-wrap .info-wrap .input-wrap .insta-area input{
     font-family: 'Noto Sans Korean';
     font-weight: 500;
     font-size: 15px;
-    /* letter-spacing: 3px; */
     height: 46px;
     width: 45%;
 }
 .main-wrap .section3-wrap .info-wrap .input-wrap .phone-area {
     width: 100%;
     font-size: 0;
+}
+.main-wrap .section3-wrap .info-wrap .input-wrap .phone-area input {
+    font-family: 'Noto Sans Korean';
+    font-weight: 500;
+    font-size: 15px;
+    height: 46px;
+    width: 31%;
+    margin-right: 3.5%
+}
+.main-wrap .section3-wrap .info-wrap .input-wrap .phone-area input:last-child {
+    margin: 0;
+}
+.main-wrap .section3-wrap .info-wrap .input-wrap .email-area {
+    width: 100%;
+    font-size: 0;
+}
+.main-wrap .section3-wrap .info-wrap .input-wrap .email-area input {
+    font-family: 'Noto Sans Korean';
+    font-weight: 500;
+    font-size: 15px;
+    height: 46px;
+    width: 100%;
+}
+.main-wrap .section3-wrap .info-wrap .notice-wrap {
+    width: 100%;
+    font-size: 10px;
+    color: #929292;
+    padding-bottom: 15px;
+}
+.main-wrap .section3-wrap .info-wrap .notice-wrap span{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+.main-wrap .section3-wrap .info-wrap .button-wrap {
+    width: 100%;
+}
+.main-wrap .section3-wrap .info-wrap .button-wrap button{
+    background: url(../images/request_btn.png) 0 0 no-repeat;
+    background-size: cover;
+    width: 298px;
+    height: 53px;
+}
+.main-wrap .section3-wrap .info-wrap .copyright-wrap {
+    width: 100%;
+    text-align: center;
+    padding: 26px 0 29px 0;
+}
+.main-wrap .section3-wrap .info-wrap .copyright-wrap img {
+    width: 189px;
 }
