@@ -40,11 +40,13 @@ img {
     top: -158px;
 }
 .main-wrap .section2-wrap .iphone-wrap:after{
+    position: absolute;
     content: "";
     background: url(../images/iphone_shadow.png) 0 0 no-repeat;
     background-size: cover;
     width: 252px;
     height: 453px;
+    top: -9px;
 
 }
 .main-wrap .section2-wrap .title-wrap{
