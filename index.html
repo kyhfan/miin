@@ -115,8 +115,6 @@
 		});
 		$(window).scroll(function() {
 			currentScroll = $(this).scrollTop();
-			console.log(currentScroll);
-			console.log($sec_3_Position);
 			if(currentScroll > $('.main-wrap').height()/4) {
 				TweenMax.to($('.main-wrap .move-top'), 0.33, {autoAlpha: 1});
 			} else {
@@ -181,7 +179,6 @@
                     "mb_email"      		: mb_email
                 },
                 success: function(response){
-                    console.log(response);
                     alert("협찬 신청이 완료 되었습니다.");
                     location.reload();
                 }
