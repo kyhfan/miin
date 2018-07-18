@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="./css/reset.css">
     <!-- <link rel="stylesheet" href="./css/common.css"> -->
     <link rel="stylesheet" href="./css/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js"></script>
 </head>
 <body>
     <div class="main-wrap">
@@ -35,7 +37,12 @@
                 <img src="./images/section2_title.png" alt="">
             </div>
             <div class="contents-wrap">
-                <img src="./images/section2_contents.png" alt="">
+            	<div class="text">
+            		<img src="./images/section2_text.png" alt="">
+            	</div>
+            	<div class="clients">
+            		<img src="./images/clients.jpg" alt="">
+            	</div>
             </div>
             <button class="more-minivertisng-btn"></button>
             <div class="contents2-wrap">
@@ -91,5 +98,40 @@
             </div>
         </div>
     </div>
+    <script>
+		var $sec_3_Position = 0;
+		var currentScroll = 0;
+		$(window).on('load', function() {
+			$sec_3_Position = ($('.section3-wrap').offset().top - 550);
+		});
+		$(window).scroll(function() {
+			currentScroll = $(this).scrollTop();
+			if(currentScroll > $('.main-wrap').height()/4) {
+				TweenMax.to($('.main-wrap .move-top'), 0.33, {autoAlpha: 1});
+			} else {
+				TweenMax.to($('.main-wrap .move-top'), 0.33, {autoAlpha: 0});
+			}
+			
+			if(currentScroll >= $sec_3_Position) {
+				TweenMax.to($('.main-wrap .move-request'), 0.73, {y: 76});
+				TweenMax.to($('.main-wrap .move-top'), 0.73, {ease: Bounce.easeOut, y: 87});
+			} else {
+				TweenMax.to($('.main-wrap .move-request'), 0.73, {y: 0});
+				TweenMax.to($('.main-wrap .move-top'), 0.73, {y: 0});
+			}
+		});
+		// 고정 탑버튼 클릭
+		$('.main-wrap .move-top').on('click', function() {
+			$('html, body').animate({
+				scrollTop: 0
+			}, currentScroll*0.65);
+		});
+		// 고정 신청버튼 클릭
+		$('.main-wrap .move-request').on('click', function() {
+			$('html, body').animate({
+				scrollTop: $('.section3-wrap').offset().top
+			}, 800);
+		});
+	</script>
 </body>
 </html>

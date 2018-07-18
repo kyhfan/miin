@@ -1,15 +1,29 @@
 html {
     /* max-width: 375px; */
 }
+* {
+	box-sizing: border-box;
+}
+button:focus, a:focus {
+	outline: 0 none;
+}
 img {
+	display: block;
     width: 100%;
 }
 .main-wrap {
     width: 100%;
+	padding-top: 76px;
 }
 .main-wrap .move-top {
     position: fixed;
+	bottom: 101px;
+	right: 38px;
     width: 35px;
+	z-index: 2;
+	opacity: 0;
+	visibility: hidden;
+	cursor: pointer;
 }
 .main-wrap .move-request {
     position: fixed;
@@ -20,19 +34,28 @@ img {
     z-index: 2;
 }
 .main-wrap .move-request button {
+	display: block;
     background: url(../images/move_req_text.png) 50% 50% no-repeat;
     background-size: 165px 16px;
     width: 100%;
     height: 76px;
-
 }
 .main-wrap .head-wrap {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
     height: 76px;
     background: #fff;
+	box-shadow: 0px 1px 18px rgba(46, 46, 46, 0.25);
+	z-index: 100;
 }
 .main-wrap .head-wrap .logo-wrap {
-    width: 60px;
-    margin: 0 auto;
+	position: absolute;
+	width: 60px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 .main-wrap .head-wrap .logo-wrap img {
     /* width: 100%; */
@@ -49,6 +72,7 @@ img {
 }
 .main-wrap .section2-wrap {
     width: 100%;
+	padding: 0 38px;
     /* height: 403px; */
     background: #fff;
 	position: relative;
@@ -76,27 +100,41 @@ img {
 }
 .main-wrap .section2-wrap .title-wrap{
     position: relative;
-    width: 280px;
+/*    width: 280px;*/
     margin: 0 auto 36px;
 /*    top: -114px;*/
 }
 .main-wrap .section2-wrap .contents-wrap{
     position: relative;
-    width: 328px;
-    margin: 0 auto;
 /*    top: -78px;*/
+	text-align: center;
+}
+.main-wrap .section2-wrap .contents-wrap .text {
+	width: 218px;
+	margin: 0 auto 28px;
+}
+.main-wrap .section2-wrap .contents-wrap .clients {
+	margin: 0 auto 46px;
+	padding: 16px 26px;
+/*	box-sizing: content-box;*/
+	box-shadow: 0px 14px 25px -2px rgba(46, 46, 46, 0.16);
+}
+.main-wrap .section2-wrap .contents-wrap .clients img {
+	display: block;
+	width: 100%;
+
 }
 .main-wrap .section2-wrap .contents2-wrap{
     position: relative;
-    width: 298px;
+/*    width: 298px;*/
     margin: 0 auto;
-	padding-bottom: 32px;
+	padding: 38px 0 32px;
 /*    top: -33px;*/
 }
 .main-wrap .section2-wrap .more-minivertisng-btn{
-    background: url(../images/more_minivertising_btn.png) 0 0 no-repeat;
+    background: url(../images/more_minivertising_btn.png) center no-repeat;
     background-size: cover;
-    width: 298px;
+    width: 100%;
     height: 53px;
     margin: 0 auto;
     display: block;
@@ -143,6 +181,7 @@ img {
     font-size: 0;
 }
 .main-wrap .section3-wrap .info-wrap .input-wrap .insta-area div{
+	position: relative;
     height: 46px;
     width: 55%;
     background: #f6f6f6;
@@ -151,13 +190,22 @@ img {
     display: inline-block;
 }
 .main-wrap .section3-wrap .info-wrap .input-wrap .insta-area div img {
-    width: 133px;
-    margin: 9% 0 0 7%;
+	display: block;
+	width: 81.5%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	max-width: 130px;
+}
+.main-wrap .section3-wrap .info-wrap input[type="text"] {
+	padding-left: 10px !important;
+/*	font-size: 11px !important;*/
+	font-size: 13px;
+	font-weight: 500;
 }
 .main-wrap .section3-wrap .info-wrap .input-wrap .insta-area input{
     font-family: 'Noto Sans Korean';
-    font-weight: 500;
-    font-size: 15px;
     height: 46px;
     width: 45%;
 }
@@ -167,8 +215,6 @@ img {
 }
 .main-wrap .section3-wrap .info-wrap .input-wrap .phone-area input {
     font-family: 'Noto Sans Korean';
-    font-weight: 500;
-    font-size: 15px;
     height: 46px;
     width: 31%;
     margin-right: 3.5%
@@ -182,8 +228,6 @@ img {
 }
 .main-wrap .section3-wrap .info-wrap .input-wrap .email-area input {
     font-family: 'Noto Sans Korean';
-    font-weight: 500;
-    font-size: 15px;
     height: 46px;
     width: 100%;
 }
@@ -202,10 +246,11 @@ img {
     width: 100%;
 }
 .main-wrap .section3-wrap .info-wrap .button-wrap button{
-    background: url(../images/request_btn.png) 0 0 no-repeat;
-    background-size: cover;
-    width: 298px;
+	display: block;
+	width: 100%;
     height: 53px;
+    background: url(../images/request_btn.png) 50% no-repeat;
+    background-size: cover;
 }
 .main-wrap .section3-wrap .info-wrap .copyright-wrap {
     width: 100%;
@@ -214,4 +259,15 @@ img {
 }
 .main-wrap .section3-wrap .info-wrap .copyright-wrap img {
     width: 189px;
+	margin: 0 auto;
+}
+
+@media all and (max-width: 350px) {
+	.main-wrap .section3-wrap .info-wrap input[type="text"] {
+		font-size: 10px;
+	}
+	.main-wrap .section3-wrap .info-wrap .label-wrap span {
+		display: block;
+		margin-top: 5px;
+	}
 }
