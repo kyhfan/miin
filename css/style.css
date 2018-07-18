@@ -14,6 +14,8 @@ img {
 .main-wrap {
     width: 100%;
 	padding-top: 76px;
+	max-width: 375px;
+	margin: 0 auto;
 }
 .main-wrap .move-top {
     position: fixed;
@@ -29,6 +31,11 @@ img {
     position: fixed;
     bottom: 0;
     left: 0;
+	right: 0;
+/*
+	max-width: 375px;
+	margin: 0 auto;
+*/
     width: 100%;
     background: #6f4a82;
     z-index: 2;
@@ -42,6 +49,10 @@ img {
 }
 .main-wrap .head-wrap {
 	position: fixed;
+/*
+	max-width: 375px;
+	margin: 0 auto;
+*/
 	top: 0;
 	left: 0;
 	right: 0;
