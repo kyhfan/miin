@@ -1,0 +1,54 @@
+html {
+    /* max-width: 375px; */
+}
+img {
+    width: 100%;
+}
+.main-wrap {
+    width: 100%;
+}
+.main-wrap .head-wrap {
+    height: 76px;
+    background: #fff;
+}
+.main-wrap .head-wrap .logo-wrap {
+    width: 60px;
+    margin: 0 auto;
+}
+.main-wrap .head-wrap .logo-wrap img {
+    /* width: 100%; */
+}
+.main-wrap .section1-wrap {
+    width: 100%;
+    /* height: 403px; */
+    background: #d2d2d2;
+}
+.main-wrap .section1-wrap .title-wrap{
+    /* width: 304px; */
+    padding: 75px 37px 189px 40px;
+    margin: 0 auto;
+}
+.main-wrap .section2-wrap {
+    width: 100%;
+    /* height: 403px; */
+    background: #fff;
+}
+.main-wrap .section2-wrap .iphone-wrap{
+    position: relative;
+    width: 199px;
+    margin: 0 auto;
+    top: -158px;
+}
+.main-wrap .section2-wrap .iphone-wrap:after{
+    content: "";
+    background: url(../images/iphone_shadow.png) 0 0 no-repeat;
+    background-size: cover;
+    width: 252px;
+    height: 453px;
+
+}
+.main-wrap .section2-wrap .title-wrap{
+    width: 280px;
+    padding: 283px 0 189px 0;
+    margin: 0 auto;
+}
