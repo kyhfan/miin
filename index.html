@@ -4,12 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>미인:미니 인플루언서</title>
     <link rel="stylesheet" href="./css/reset.css">
     <!-- <link rel="stylesheet" href="./css/common.css"> -->
     <link rel="stylesheet" href="./css/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-122532857-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-122532857-1');
+    </script>    
 </head>
 <body>
     <div class="main-wrap">
@@ -44,7 +53,7 @@
             		<img src="./images/clients.jpg" alt="">
             	</div>
             </div>
-            <button class="more-minivertisng-btn"></button>
+            <a href="http://www.minivertising.kr" target="_blank"><button class="more-minivertisng-btn"></button></a>
             <div class="contents2-wrap">
                 <img src="./images/section2_contents2.png" alt="">
             </div>
@@ -62,7 +71,7 @@
                         <div>
                             <img src="./images/insta_link.png" alt="">
                         </div>
-                        <input type="text" name="" id="">
+                        <input type="text" id="mb_link">
                     </div>
                 </div>
                 <div class="label-wrap">
@@ -71,9 +80,9 @@
                 </div>
                 <div class="input-wrap">
                     <div class="phone-area">
-                        <input type="text" name="" id="">
-                        <input type="text" name="" id="">
-                        <input type="text" name="" id="">
+                        <input type="tel" id="mb_phone1">
+                        <input type="tel" id="mb_phone2">
+                        <input type="tel" id="mb_phone3">
                     </div>
                 </div>
                 <div class="label-wrap">
@@ -82,16 +91,17 @@
                 </div>
                 <div class="input-wrap">
                     <div class="email-area">
-                        <input type="text" name="" id="">
+                        <input type="text" id="mb_email">
                     </div>
                 </div>
                 <div class="notice-wrap">
+                    <span>-입력하신 정보는 1년 보관 후 파기됩니다</span>
                     <span>-잘못된 정보 입력 시 협찬이 제공되지 않을 수 있습니다</span>
                     <span>-문의는 @official_miin 으로 다이렉트 메세지 주세요</span>
                 </div>
                 <textarea name="" id="" style="width: 100%; text-align: center; resize: none; font-size: 13px; padding: 20px 0; display: block;"></textarea>
                 <div class="button-wrap">
-                    <button></button>
+                    <button onclick="request_sponsor()"></button>
                 </div>
                 <div class="copyright-wrap">
                     <img src="./images/copyright.png" alt="">
@@ -99,7 +109,7 @@
             </div>
         </div>
     </div>
-    <script>
+    <script type="text/javascript">
 		var $sec_3_Position = 0;
 		var currentScroll = 0;
 		$(window).on('load', function() {
@@ -133,6 +143,50 @@
 				scrollTop: $('.section3-wrap').offset().top
 			}, 800);
 		});
-	</script>
+
+        function request_sponsor()
+        {
+            var mb_link         = $("#mb_link").val();
+            var mb_phone1       = $("#mb_phone1").val();
+            var mb_phone2       = $("#mb_phone2").val();
+            var mb_phone3       = $("#mb_phone3").val();
+            var mb_email        = $("#mb_email").val();
+            var mb_phone        = mb_phone1 + mb_phone2 + mb_phone3;
+
+            if (mb_link == "")
+            {
+                alert("인스타그램 주소를 정확히 입력해 주세요.");
+                return false;
+            }
+
+            if (mb_phone1 == "" || mb_phone2 == "" || mb_phone3 == "")
+            {
+                alert("휴대폰 번호를 정확히 입력해 주세요.");
+                return false;
+            }
+
+            if (mb_email == "")
+            {
+                alert("이메일 주소를 입력해 주세요.");
+                return false;
+            }
+
+            $.ajax({
+                type   : "POST",
+                async  : false,
+                url    : "./main_exec.php",
+                data:{
+                    "mb_link"				: mb_link,
+                    "mb_phone"				: mb_phone,
+                    "mb_email"      		: mb_email
+                },
+                success: function(response){
+                    // alert("협찬 신청이 완료 되었습니다.");
+                    alert("당첨되신 분에게는 8월 30일까지 순차적으로 문자와 메일을 통해 개별 연락드릴 예정입니다.\n향후 협찬은 미인 공식 인스타그램(@official_miin)을 통해 확인해주세요!\n참여해주셔서 감사합니다.");
+                    location.reload();
+                }
+            });
+        }
+    </script>
 </body>
 </html>

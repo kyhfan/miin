@@ -209,7 +209,8 @@ img {
 	transform: translate(-50%, -50%);
 	max-width: 130px;
 }
-.main-wrap .section3-wrap .info-wrap input[type="text"] {
+.main-wrap .section3-wrap .info-wrap input[type="text"],
+.main-wrap .section3-wrap .info-wrap input[type="tel"] {
 	padding-left: 10px !important;
 /*	font-size: 11px !important;*/
 	font-size: 13px;
@@ -274,7 +275,8 @@ img {
 }
 
 @media all and (max-width: 350px) {
-	.main-wrap .section3-wrap .info-wrap input[type="text"] {
+	.main-wrap .section3-wrap .info-wrap input[type="text"],
+	.main-wrap .section3-wrap .info-wrap input[type="tel"] {
 		font-size: 10px;
 	}
 	.main-wrap .section3-wrap .info-wrap .label-wrap span {
