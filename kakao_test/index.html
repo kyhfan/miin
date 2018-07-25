@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		#kakao_btn {
+			padding: 10px 20px;
+			background: yellow;
+			color: #333333;
+			font-size: 13px;
+		}
+	</style>
+	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+</head>
+<body>
+	<button type="button" onclick="sendLink()" id="kakao_btn">카카오톡 쉐어</button>
+	<script type='text/javascript'>
+		//<![CDATA[
+		// // 사용할 앱의 JavaScript 키를 설정해 주세요.
+		Kakao.init('8b86ed351eb4e473ddea7b8d3dca7063');
+		// // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+		function sendLink() {
+			Kakao.Link.sendDefault({
+				objectType: 'feed',
+				content: {
+					title: '딸기 치즈 케익',
+					description: '#케익 #딸기 #삼평동 #카페 #분위기 #소개팅',
+					imageUrl: 'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
+					link: {
+						mobileWebUrl: 'http://www.minivertising-test.com/kakao_test/',
+						webUrl: 'http://www.minivertising-test.com/kakao_test/'
+					}
+				},
+				buttons: [
+					{
+						title: '웹으로 보기',
+						link: {
+							mobileWebUrl: 'http://www.minivertising-test.com/kakao_test/',
+							webUrl: 'http://www.minivertising-test.com/kakao_test/'
+						}
+					},
+					{
+						title: '앱으로 보기',
+						link: {
+							mobileWebUrl: 'http://www.minivertising-test.com/kakao_test/',
+							webUrl: 'http://www.minivertising-test.com/kakao_test/'
+						}
+					}
+				]
+			});
+		}
+		//]]>
+	</script>
+</body>
+</html>
