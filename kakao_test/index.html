@@ -49,7 +49,16 @@
 							webUrl: 'http://www.minivertising-test.com/kakao_test/'
 						}
 					}
-				]
+				],
+				success: function(res) {
+					console.log("success:"+res);
+				},
+				fail: function(res) {
+					console.log("fail:"+res);
+				},
+				callback: function(res) {
+					console.log("callback:"+res);
+				}
 			});
 		}
 		//]]>
