@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+    <select id="phone_device">
+        <option value="1440_2560">9:16</option>
+        <option value="1140_2880">9:18</option>
+        <option value="1140_2960">9:18.5</option>
+        <option value="1125_2436">9:19.5</option>
+    </select>
+    <select id="phone_type">
+        <option value="01">1</option>
+        <option value="02">2</option>
+        <option value="03">3</option>
+        <option value="04">4</option>
+        <option value="05">5</option>
+    </select>
+    <br>
+    <input type="text" id="to_msg" value="받는 사람" placeholder="받는 사람">
+    <br>
+    <input type="text" id="msg1" value="안녕하세요">
+    <br>
+    <input type="text" id="msg2" value="안녕하세요안녕하세요">
+    <br>
+    <input type="text" id="msg3" value="안녕하세요안녕하세요안녕하세요">
+    <br>
+    <input type="text" id="msg4" value="안녕하세요안녕하세요안녕하세요">
+    <br>
+    <input type="text" id="msg5" value="안녕하세요안녕하세요안녕하세요">
+    <br>
+    <input type="text" id="from_msg" value="보내는 사람" placeholder="보내는 사람">
+    <br>
+    <button onclick="mege_image()">확인</button>
+    <script>
+    function mege_image()
+    {
+        var phone_device    = $("#phone_device").val();
+        var phone_type      = $("#phone_type").val();
+        var msg1            = $("#msg1").val();
+        var msg2            = $("#msg2").val();
+        var msg3            = $("#msg3").val();
+        var msg4            = $("#msg4").val();
+        var msg5            = $("#msg5").val();
+        var to_msg          = $("#to_msg").val();
+        var from_msg        = $("#from_msg").val();
+
+        $.ajax({
+            type   : "POST",
+            async  : false,
+            url    : "./main_exec.php",
+            data:{
+                "phone_device"		: phone_device,
+                "phone_type"		: phone_type,
+                "msg1"				: msg1,
+                "msg2"				: msg2,
+                "msg3"				: msg3,
+                "msg4"				: msg4,
+                "msg5"				: msg5,
+                "to_msg"			: to_msg,
+                "from_msg"			: from_msg
+            },
+            success: function(response){
+                console.log(response);
+            }
+        });
+
+    }
+    </script>
+</body>
+</html>
