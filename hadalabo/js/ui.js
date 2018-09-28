@@ -117,36 +117,6 @@
     });
   };
 
-  // youtube
-  /*
-  $.fn.youtube = function(customOption) {
-    var defaultOption = {
-      //
-    };
-
-    this.each(function() {
-      var option = $.extend({}, defaultOption, customOption);
-      var $this = $(this);
-
-      if ($this.data('youtube') || !YT) return;
-
-      if (YT.Player) {
-        $this.append('<div></div>');
-        var youtube = new YT.Player($this.children().get(0), option);
-        $this.data('youtube', youtube);
-      }
-    });
-  };
-
-  $video.youtube({
-    videoId : url,
-    playerVars : {
-      showinfo : 0,
-      rel : 0
-    }
-  });
-  */
-
   window.hadalaboUI = window.hadalaboUI || {};
 
   hadalaboUI.ieMode = document.documentMode;
@@ -1057,8 +1027,8 @@
     return $(this);
   };
 
-  // input chece val
-  $doc.on('focusout.hadalaboUI keydown.hadalaboUI keyup.hadalaboUI', 'input', function() {
+  // input cheke val
+  $doc.on('focusout.hadalaboUI keydown.hadalaboUI keyup.hadalaboUI', 'input[type="text"]', function() {
     var $this = $(this),
       val = $this.val();
 
@@ -1130,54 +1100,66 @@
     }
 
     //drop
-    var $drop = $('.js-drop');
-    if ($drop.length) {
-      function drop() {
-        $drop
-          .stop()
-          .prop('scale', 0)
-          .css({
-            marginTop: 0,
-            opacity: 1,
-            '-webkit-transform': 'scale(0)',
-            transform: 'scale(0)'
-          })
-          .animate(
-            {
-              scale: 100
-            },
-            {
-              duration: 2000,
-              step: function(now, fx) {
-                if (fx.prop === 'scale') {
-                  $(this).css({
-                    '-webkit-transform': 'scale(' + now * 0.01 + ')',
-                    transform: 'scale(' + now * 0.01 + ')'
-                  });
-                }
-              },
-              complete: function() {
-                var timer = setTimeout(function() {
-                  clearTimeout(timer);
-                  $drop.stop().animate(
-                    {
-                      marginTop: 90,
-                      opacity: 0.1
-                    },
-                    800,
-                    function(){
-                      var timer = setTimeout(function() {
-                        clearTimeout(timer);
-                        drop();
-                      }, 3000);
-                    }
-                  );
-                },1000);
+    function drop($drop, duration, top) {
+      $drop
+        .stop()
+        .prop('scale', 0)
+        .css({
+          marginTop: 0,
+          opacity: 1,
+          '-webkit-transform': 'scale(0)',
+          transform: 'scale(0)'
+        })
+        .animate(
+          {
+            scale: 100
+          },
+          {
+            duration: duration[0],
+            step: function(now, fx) {
+              if (fx.prop === 'scale') {
+                $(this).css({
+                  '-webkit-transform': 'scale(' + now * 0.01 + ')',
+                  transform: 'scale(' + now * 0.01 + ')'
+                });
               }
+            },
+            complete: function() {
+              var timer = setTimeout(function() {
+                clearTimeout(timer);
+                $drop.stop().animate(
+                  {
+                    marginTop: top,
+                    opacity: 0.1
+                  },
+                  duration[2],
+                  function() {
+                    var timer = setTimeout(function() {
+                      clearTimeout(timer);
+                      drop($drop, duration, top);
+                    }, duration[3]);
+                  }
+                );
+              }, duration[1]);
             }
-          );
-      }
-      drop();
+          }
+        );
+    }
+    var $drop01 = $('.js-drop'),
+      $drop02 = $('.js-drop-02'),
+      $drop03 = $('.js-drop-03');
+    if ($drop01.length) {
+      drop($drop01, [2000, 1000, 800, 3200], 90);
+    }
+    if ($drop02.length) {
+      setTimeout(function() {
+        drop($drop02, [2000, 1000, 1000, 3000], 300);
+      }, 500);
+    }
+    if ($drop03.length) {
+      setTimeout(function() {
+        drop($drop03, [2000, 1200, 800, 3000], 200);
+      }, 700);
     }
   });
 })(jQuery);
