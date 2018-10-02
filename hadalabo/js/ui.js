@@ -845,188 +845,6 @@
     });
   };
 
-  // bubble
-  var Bubble = function(target, options) {
-    var _ = this,
-      $target = $(target).eq(0);
-
-    _.className = {
-      bubble: 'js-bubble'
-    };
-    _.options = options;
-    _.$target = $target;
-    _.init();
-    _.play();
-  };
-  Bubble.prototype.init = function() {
-    var _ = this;
-
-    _.$target.append('<div class="' + _.className.bubble + '"><div></div></div>');
-    _.$bubble = _.$target.find('.' + _.className.bubble).eq(-1);
-    _.$img = _.$bubble.find('div');
-  };
-  Bubble.prototype.play = function() {
-    var _ = this;
-
-    function play() {
-      var positions = _.getPositions(),
-        i = 0;
-
-      _.$bubble
-        .data('left', _.options.start.x)
-        .data('top', _.options.start.y)
-        .css({
-          '-webkit-transform': 'translate(' + _.options.start.x + 'px, ' + _.options.start.y + 'px)',
-          transform: 'translate(' + _.options.start.x + 'px, ' + _.options.start.y + 'px)'
-        });
-      _.$img
-        .stop()
-        .prop('scale', 0)
-        .css({
-          '-webkit-transform': 'scale(0)',
-          transform: 'scale(0)',
-          opacity: _.getRandom(0, 100) * 0.01
-        })
-        .animate(
-          {
-            scale: 100
-          },
-          {
-            duration: 800,
-            step: function(now, fx) {
-              if (fx.prop === 'scale') {
-                $(this).css({
-                  '-webkit-transform': 'scale(' + now * 0.01 + ')',
-                  transform: 'scale(' + now * 0.01 + ')'
-                });
-              }
-            }
-          }
-        );
-      function animate() {
-        _.step(positions[i], function() {
-          i++;
-          if (positions[i]) {
-            animate();
-            if (positions.length - 2 <= i) {
-              _.$img.stop().animate(
-                {
-                  scale: 0
-                },
-                {
-                  duration: 800,
-                  step: function(now, fx) {
-                    if (fx.prop === 'scale') {
-                      $(this).css({
-                        '-webkit-transform': 'scale(' + now * 0.01 + ')',
-                        transform: 'scale(' + now * 0.01 + ')'
-                      });
-                    }
-                  }
-                }
-              );
-            }
-          } else {
-            play();
-          }
-        });
-      }
-      animate();
-    }
-    play();
-  };
-  Bubble.prototype.step = function(css, callBack) {
-    var _ = this,
-      left = _.$bubble.data('left'),
-      top = _.$bubble.data('top'),
-      afterLeft = left,
-      addY = top > css.top ? -1 : 1,
-      addX = left > css.left ? -0.4 : 0.4,
-      timer = null;
-
-    function step() {
-      timer = setTimeout(function() {
-        clearTimeout(timer);
-        if (top === css.top) {
-          top = css.top;
-        } else {
-          top += addY;
-        }
-        if (afterLeft === css.left) {
-          left = css.left;
-        } else {
-          left += addX;
-        }
-        afterLeft = Math.floor(left);
-        _.$bubble
-          .data('left', afterLeft)
-          .data('top', top)
-          .css({
-            '-webkit-transform': 'translate(' + afterLeft + 'px, ' + top + 'px)',
-            transform: 'translate(' + afterLeft + 'px, ' + top + 'px)'
-          });
-        if (top === css.top && afterLeft === css.left) {
-          callBack();
-        } else {
-          step();
-        }
-      }, 8);
-    }
-    step();
-  };
-  Bubble.prototype.getPositions = function() {
-    var _ = this,
-      yRange = (function() {
-        if ((_.options.end.y < 0 && _.options.start.y < 0) || (_.options.end.y >= 0 && _.options.start.y >= 0)) {
-          return Math.abs(_.options.end.y - _.options.start.y) / 10;
-        } else {
-          return (Math.abs(_.options.end.y) + Math.abs(_.options.start.y)) / 10;
-        }
-      })(),
-      array = [];
-
-    for (var i = _.options.start.y; i > _.options.end.y; i -= yRange) {
-      array.push({
-        top: _.getRandom(i - yRange, i),
-        left: _.getRandom(_.options.start.x - _.options.range, _.options.start.x + _.options.range)
-      });
-    }
-    array.push({
-      top: _.options.end.y,
-      left: _.getRandom(_.options.start.x - _.options.range, _.options.start.x + _.options.range)
-    });
-
-    return array;
-  };
-  Bubble.prototype.getRandom = function(min, max) {
-    var _ = this;
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  };
-  $.fn.bubble = function(custom) {
-    var defaultOption = {
-      start: {
-        x: 0,
-        y: 0
-      },
-      end: {
-        x: 0,
-        y: -500
-      },
-      range: 20
-    };
-
-    this.each(function() {
-      var options = $.extend({}, defaultOption, custom);
-      if (!this.Bubble) {
-        this.Bubble = [new Bubble(this, options)];
-      } else if (this.Bubble) {
-        this.Bubble.push(new Bubble(this, options));
-      }
-    });
-
-    return $(this);
-  };
-
   // input cheke val
   $doc.on('focusout.hadalaboUI keydown.hadalaboUI keyup.hadalaboUI', 'input[type="text"]', function() {
     var $this = $(this),
@@ -1037,6 +855,18 @@
     } else {
       $this.removeClass('is-value');
     }
+  });
+
+  // 아래 화살표 기능
+  $doc.on('click.hadalaboUI', '.js-main-down', function() {
+    $('html, body')
+      .stop()
+      .animate(
+        {
+          scrollTop: $('.main-section--02').offset().top
+        },
+        500
+      );
   });
 
   // dom ready
@@ -1060,45 +890,6 @@
 
   // window load
   $win.on('load', function() {
-    //bubble
-    var $bubbleWrap = $('.js-bubble-wrap');
-    if ($bubbleWrap.length) {
-      var positions = [
-          {
-            x: 0,
-            y: 720
-          },
-          {
-            x: 50,
-            y: 720
-          },
-          {
-            x: 250,
-            y: 720
-          },
-          {
-            x: 300,
-            y: 720
-          }
-        ],
-        timer = [];
-      for (var t = 0; t < 11; t++) {
-        timer[t] = setTimeout(function() {
-          clearTimeout(timer[t]);
-          $.each(positions, function(i) {
-            $bubbleWrap.bubble({
-              start: positions[i],
-              end: {
-                x: 0,
-                y: 0
-              },
-              range: 20
-            });
-          });
-        }, 800 * t);
-      }
-    }
-
     //drop
     function drop($drop, duration, top) {
       $drop
@@ -1160,6 +951,38 @@
       setTimeout(function() {
         drop($drop03, [2000, 1200, 800, 3000], 200);
       }, 700);
+    }
+
+    // light
+    function light($light, duration, opacity) {
+      $light
+        .stop()
+        .css('opacity', 1)
+        .animate(
+          {
+            opacity: opacity[0]
+          },
+          duration[0],
+          function() {
+            $light.stop().animate(
+              {
+                opacity: opacity[1]
+              },
+              duration[1],
+              function() {
+                light($light, duration, opacity);
+              }
+            );
+          }
+        );
+    }
+    var $light01 = $('.js-light-01'),
+      $light02 = $('.js-light-02');
+    if ($light01.length) {
+      light($light01, [2500, 2500], [0.3, 1]);
+    }
+    if ($light02.length) {
+      light($light02, [1000, 1000], [0.4, 1]);
     }
   });
 })(jQuery);
