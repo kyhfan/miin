@@ -25,7 +25,13 @@
 </head>
 <body>
     <div>
-        <input type="button" value="확인" style="width:100px;height:50px">
+        <input type="button" value="확인1" id="confirm1" style="width:100px;height:50px">
     </div>
 </body>
 </html>
+<button id="submitButton">잠재 고객</button>
+<script type="text/javascript">
+document.getElementById('confirm1').addEventListener('click', function() {
+    fbq('track', 'Lead');
+}, false);
+</script>
